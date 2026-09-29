@@ -1,0 +1,215 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* 마우스 위치에 따라 script.js가 값을 바꿈 */
+  --mx: 50%;
+  --my: 50%;
+  --hue: 45;
+}
+
+body {
+  font-family: "Pretendard", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  min-height: 100vh;
+  color: #3a3226;
+  background:
+    radial-gradient(circle at var(--mx) var(--my),
+      hsla(var(--hue), 100%, 82%, 0.9) 0%,
+      hsla(calc(var(--hue) + 40), 95%, 88%, 0.6) 30%,
+      transparent 60%),
+    linear-gradient(135deg, #fff8e1 0%, #ffecd2 45%, #e6f7f1 100%);
+  background-attachment: fixed;
+  transition: background 0.2s ease-out;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 로고: 화면 상단 좌측 */
+.header {
+  padding: 20px 28px;
+}
+
+.logo {
+  height: 44px;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(255, 170, 0, 0.25);
+}
+
+.main {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 16px 40px;
+}
+
+/* 입력 영역 */
+.input-area {
+  width: 100%;
+  max-width: 560px;
+  text-align: center;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.guide {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.input-row {
+  display: flex;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 8px;
+  border-radius: 999px;
+  box-shadow: 0 8px 30px rgba(180, 130, 30, 0.15);
+}
+
+#url-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+  padding: 10px 16px;
+}
+
+#generate-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0 26px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #3a3226;
+  background: linear-gradient(135deg, #ffd23f, #ffb000);
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+#generate-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 176, 0, 0.45);
+}
+
+.error {
+  min-height: 20px;
+  margin-top: 10px;
+  color: #d93025;
+  font-size: 14px;
+}
+
+/* QR 영역: 처음에는 숨김 */
+.qr-area {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  animation: pop 0.5s ease-out;
+}
+
+.qr-card {
+  background: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 18px;
+  cursor: pointer;
+  box-shadow: 0 12px 40px rgba(180, 130, 30, 0.22);
+  transition: transform 0.2s;
+}
+
+.qr-card:hover {
+  transform: scale(1.03);
+}
+
+.qr-card canvas {
+  display: block;
+  width: 240px;
+  height: 240px;
+}
+
+.qr-hint {
+  margin-top: 14px;
+  font-size: 14px;
+}
+
+.qr-url {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #7a6d58;
+  max-width: 90vw;
+  word-break: break-all;
+  text-align: center;
+}
+
+/* 생성 후 상태: QR은 정중앙, 입력창은 하단으로 */
+.main.done {
+  justify-content: flex-start;
+}
+
+.main.done .qr-area {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+.main.done .input-area {
+  margin-top: 28px;
+}
+
+.main.done .guide {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding: 16px;
+  }
+  .logo {
+    height: 36px;
+  }
+  .qr-card canvas {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* QRnShort 홈으로 돌아가기 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: #3a3226;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 8px 14px;
+  border-radius: 999px;
+}
+
+.home-link:hover {
+  background: #fff;
+}

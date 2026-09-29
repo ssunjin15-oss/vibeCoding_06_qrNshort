@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL2QR | URL을 QR코드로</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <a href="./" class="logo-link" title="처음으로">
+      <img src="img/logo.png" alt="URL2QR 로고" class="logo">
+    </a>
+    <a href="../index.html" class="home-link">← QRnShort 홈</a>
+  </header>
+
+  <main class="main" id="main">
+    <!-- QR 결과 영역 (생성 후 정중앙에 표시) -->
+    <section class="qr-area" id="qr-area" aria-live="polite">
+      <button type="button" class="qr-card" id="qr-card" title="클릭하면 JPG로 다운로드됩니다">
+        <canvas id="qr-canvas" width="280" height="280"></canvas>
+      </button>
+      <p class="qr-hint">QR코드를 클릭하면 <strong>JPG 파일</strong>로 저장돼요</p>
+      <p class="qr-url" id="qr-url"></p>
+    </section>
+
+    <!-- URL 입력 영역 (생성 후 하단으로 이동) -->
+    <form class="input-area" id="url-form" novalidate>
+      <p class="guide" id="guide">QR코드로 만들 URL을 입력하세요</p>
+      <div class="input-row">
+        <input type="text" id="url-input" placeholder="https://example.com" autocomplete="off">
+        <button type="submit" id="generate-btn">확인</button>
+      </div>
+      <p class="error" id="error-msg"></p>
+    </form>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
