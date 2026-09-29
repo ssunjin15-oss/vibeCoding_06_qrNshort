@@ -1,0 +1,143 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Pretendard", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  min-height: 100vh;
+  color: #2f2a24;
+  background: linear-gradient(135deg, #e6f7f1 0%, #fff8e1 55%, #ffecd2 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding: 20px 28px;
+}
+
+.home-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2f2a24;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 8px 14px;
+  border-radius: 999px;
+}
+
+.home-link:hover {
+  background: #fff;
+}
+
+.card {
+  width: calc(100% - 32px);
+  max-width: 600px;
+  margin: 40px auto;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 24px;
+  padding: 36px 32px;
+  box-shadow: 0 12px 40px rgba(60, 120, 100, 0.15);
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.desc {
+  margin-top: 6px;
+  color: #6b5f4f;
+  font-size: 15px;
+}
+
+.field-label {
+  display: block;
+  margin-top: 26px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.row input {
+  flex: 1;
+  min-width: 0;
+  font-size: 15px;
+  padding: 12px 14px;
+  border: 1.5px solid #e0d8c8;
+  border-radius: 12px;
+  outline: none;
+  background: #fff;
+}
+
+.row input:focus {
+  border-color: #2bb58a;
+}
+
+#result-output {
+  background: #f6f8f7;
+  color: #1a7a5c;
+  font-weight: 600;
+}
+
+.row button {
+  flex-shrink: 0;
+  border: none;
+  border-radius: 12px;
+  padding: 0 20px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  background: #2bb58a;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+}
+
+.row button:hover:not(:disabled) {
+  background: #22997a;
+}
+
+.row button:disabled {
+  background: #c9cfcc;
+  cursor: not-allowed;
+}
+
+#copy-btn {
+  background: #ffb000;
+  color: #2f2a24;
+}
+
+#copy-btn:hover:not(:disabled) {
+  background: #f0a500;
+}
+
+.error {
+  min-height: 20px;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #d93025;
+}
+
+.api-note {
+  margin-top: 22px;
+  font-size: 12px;
+  color: #9a8e7a;
+}
+
+@media (max-width: 520px) {
+  .card {
+    padding: 28px 20px;
+  }
+  .row {
+    flex-direction: column;
+  }
+  .row button {
+    padding: 12px;
+  }
+}

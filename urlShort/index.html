@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL단축 | QRnShort</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <a href="../index.html" class="home-link">← QRnShort 홈</a>
+  </header>
+
+  <main class="card">
+    <h1>URL단축</h1>
+    <p class="desc">긴 URL을 입력하고 단축하기를 누르세요</p>
+
+    <label for="url-input" class="field-label">URL 입력</label>
+    <div class="row">
+      <input type="text" id="url-input" placeholder="https://example.com/very/long/url" autocomplete="off">
+      <button type="button" id="shorten-btn" disabled>단축하기</button>
+    </div>
+    <p class="error" id="error-msg"></p>
+
+    <label for="result-output" class="field-label">단축 결과</label>
+    <div class="row">
+      <input type="text" id="result-output" readonly placeholder="단축된 URL이 여기에 표시됩니다">
+      <button type="button" id="copy-btn" disabled>복사</button>
+    </div>
+    <p class="api-note">단축 OpenAPI: is.gd (응답 실패 시 clck.ru로 자동 전환)</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
