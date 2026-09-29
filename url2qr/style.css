@@ -192,24 +192,3 @@ body {
     height: 200px;
   }
 }
-
-/* QRnShort 홈으로 돌아가기 */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.home-link {
-  font-size: 14px;
-  font-weight: 600;
-  color: #3a3226;
-  text-decoration: none;
-  background: rgba(255, 255, 255, 0.7);
-  padding: 8px 14px;
-  border-radius: 999px;
-}
-
-.home-link:hover {
-  background: #fff;
-}
