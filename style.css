@@ -1,0 +1,107 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Pretendard", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #2f2a24;
+  background: linear-gradient(135deg, #fff8e1 0%, #ffecd2 45%, #e6f7f1 100%);
+}
+
+.wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+  text-align: center;
+}
+
+.title {
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.title span {
+  color: #ffb000;
+}
+
+.subtitle {
+  margin-top: 10px;
+  font-size: 17px;
+  color: #6b5f4f;
+}
+
+.menu {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.menu-btn {
+  width: 220px;
+  padding: 28px 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 30px rgba(180, 130, 30, 0.15);
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.menu-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(180, 130, 30, 0.25);
+}
+
+.menu-btn .icon {
+  font-size: 40px;
+}
+
+.menu-btn .label {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.menu-btn .desc {
+  font-size: 14px;
+  color: #7a6d58;
+}
+
+.menu-btn.qr {
+  border-top: 5px solid #ffb000;
+}
+
+.menu-btn.short {
+  border-top: 5px solid #2bb58a;
+}
+
+.footer {
+  text-align: center;
+  font-size: 13px;
+  color: #8a7d68;
+  padding: 16px;
+}
+
+@media (max-width: 520px) {
+  .title {
+    font-size: 42px;
+  }
+  .menu-btn {
+    width: 100%;
+    max-width: 320px;
+  }
+}
