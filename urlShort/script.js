@@ -1,5 +1,5 @@
 // URL단축: OpenAPI로 긴 URL을 짧게 변환
-// 1순위 is.gd (JSONP 방식이라 CORS 영향 없음), 실패 시 2순위 clck.ru (CORS 지원)
+// 1순위 da.gd (CORS 지원), 실패 시 2순위 clck.ru, 3순위 is.gd(JSONP)
 
 const input = document.getElementById("url-input");
 const shortenBtn = document.getElementById("shorten-btn");
@@ -31,7 +31,7 @@ function normalizeUrl(value) {
   }
 }
 
-// 1순위: is.gd OpenAPI (JSONP)
+// 3순위: is.gd OpenAPI (JSONP)
 function shortenWithIsgd(longUrl, timeoutMs = 8000) {
   return new Promise((resolve, reject) => {
     const callbackName = "isgdCallback_" + Date.now();
@@ -62,6 +62,23 @@ function shortenWithIsgd(longUrl, timeoutMs = 8000) {
     };
     document.body.appendChild(script);
   });
+}
+
+// 1순위: da.gd OpenAPI (fetch, 결과를 텍스트로 반환)
+async function shortenWithDagd(longUrl, timeoutMs = 8000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const res = await fetch("https://da.gd/s?url=" + encodeURIComponent(longUrl), {
+      signal: controller.signal,
+    });
+    if (!res.ok) throw new Error("da.gd 응답 오류 " + res.status);
+    const text = (await res.text()).trim();
+    if (!/^https?:\/\//.test(text)) throw new Error("da.gd 단축 실패");
+    return text;
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 // 2순위: clck.ru OpenAPI (fetch, 결과를 텍스트로 반환)
@@ -95,13 +112,17 @@ shortenBtn.addEventListener("click", async () => {
   copyBtn.disabled = true;
 
   try {
-    let shortUrl;
-    try {
-      shortUrl = await shortenWithIsgd(longUrl);
-    } catch (firstError) {
-      console.warn(firstError.message, "→ clck.ru로 재시도");
-      shortUrl = await shortenWithClck(longUrl);
+    let shortUrl = null;
+    const apis = [shortenWithDagd, shortenWithClck, shortenWithIsgd];
+    for (const api of apis) {
+      try {
+        shortUrl = await api(longUrl);
+        break;
+      } catch (apiError) {
+        console.warn(apiError.message, "→ 다음 API로 재시도");
+      }
     }
+    if (!shortUrl) throw new Error("모든 단축 API 실패");
     output.value = shortUrl;
     copyBtn.disabled = false;
   } catch (err) {
