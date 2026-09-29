@@ -105,3 +105,12 @@ body {
     max-width: 320px;
   }
 }
+
+.footer-link {
+  margin-top: 6px;
+}
+
+.footer-link a {
+  color: #b07a00;
+  font-weight: 600;
+}
